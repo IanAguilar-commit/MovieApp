@@ -1,18 +1,15 @@
 package com.kotlin.movieapp.data.remote
 
+import com.kotlin.movieapp.application.AppConstants
 import com.kotlin.movieapp.data.model.MovieList
+import com.kotlin.movieapp.repository.WebService
 
-class MovieDataSource {
+class MovieDataSource(private val webService: WebService) {
 
-    fun getUpcomingMovies(): MovieList {
-        return MovieList()
-    }
+    suspend fun getUpcomingMovies(): MovieList = webService.getUpcomingMovies(AppConstants.API_KEY)
 
-    fun getTopRatedMovies(): MovieList {
-        return MovieList()
-    }
-    fun getPopularMovies(): MovieList {
-        return MovieList()
-    }
-    
+    suspend fun getTopRatedMovies(): MovieList = webService.getTopRatedMovies(AppConstants.API_KEY)
+
+    suspend fun getPopularMovies(): MovieList = webService.getPopularMovies(AppConstants.API_KEY)
+
 }
